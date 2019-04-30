@@ -221,20 +221,6 @@ chmod 755 kali-${architecture}/third-stage
 
 LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /third-stage
 
-cat << EOF > kali-${architecture}/cleanup
-#!/bin/bash
-rm -rf /root/.bash_history
-apt-get update
-apt-get clean
-rm -f /0
-rm -f /hs_err*
-rm -f cleanup
-rm -f /usr/bin/qemu*
-EOF
-chmod 755 kali-${architecture}/cleanup
-
-LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /cleanup
-
 #umount kali-${architecture}/proc/sys/fs/binfmt_misc
 #umount kali-${architecture}/dev/pts
 #umount kali-${architecture}/dev/
@@ -634,10 +620,24 @@ cat << EOF > "${basedir}"/kali-${architecture}/create-initrd
 update-initramfs -c -k 3.16.60
 mkimage -A arm64 -O linux -T ramdisk -C none -a 0 -e 0 -n "uInitrd" -d /boot/initrd.img-3.16.60 /boot/uInitrd
 rm -f /create-initrd
-rm -f /usr/bin/qemu-*
 EOF
 chmod 755 "${basedir}"/kali-${architecture}/create-initrd
 LANG=C systemd-nspawn -M ${machine} -D "${basedir}"/kali-${architecture} /create-initrd
+
+cat << EOF > kali-${architecture}/cleanup
+#!/bin/bash
+rm -rf /root/.bash_history
+apt-get update
+apt-get clean
+rm -f /0
+rm -f /hs_err*
+rm -f cleanup
+rm -f /usr/bin/qemu*
+EOF
+chmod 755 kali-${architecture}/cleanup
+
+LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /cleanup
+
 sync
 
 # rpi-wiggle
