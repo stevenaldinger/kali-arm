@@ -233,7 +233,7 @@ EOF
 
 # We need an older cross compiler due to kernel age.
 cd "${basedir}"
-git clone --depth 1 https://gitlab.com/kalilinux/packages/gcc-arm-linux-gnueabihf-4-7.git
+git clone --depth 1 https://gitlab.com/kalilinux/packages/gcc-arm-linux-gnueabihf-4-7.git gcc-arm-linux-gnueabihf-4.7
 
 # Kernel section. If you want to use a custom kernel, or configuration, replace
 # them in this section.

@@ -239,7 +239,7 @@ EOF
 
 # Need to patch the kernel to support newer gcc, but that'll happen after 2018.3
 cd "${basedir}"
-git clone --depth 1 https://gitlab.com/kalilinux/packages/gcc-arm-linux-gnueabihf-4-7.git
+git clone --depth 1 https://gitlab.com/kalilinux/packages/gcc-arm-linux-gnueabihf-4-7.git gcc-arm-linux-gnueabihf-4.7
 
 # Get, compile and install kernel
 git clone --depth 1 https://github.com/wawtechnologies/linux-kernel-3.14.51-catchwire-kalitap.git "${basedir}"/kali-${architecture}/usr/src/kernel
