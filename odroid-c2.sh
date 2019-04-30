@@ -617,8 +617,8 @@ chmod 755 "${basedir}"/kali-${architecture}/etc/init.d/zram
 # c2_init.sh file before we launch X.
 cat << EOF > "${basedir}"/kali-${architecture}/create-initrd
 #!/bin/bash
-update-initramfs -c -k 3.16.60
-mkimage -A arm64 -O linux -T ramdisk -C none -a 0 -e 0 -n "uInitrd" -d /boot/initrd.img-3.16.60 /boot/uInitrd
+update-initramfs -c -k 3.16.65
+mkimage -A arm64 -O linux -T ramdisk -C none -a 0 -e 0 -n "uInitrd" -d /boot/initrd.img-3.16.65 /boot/uInitrd
 rm -f /create-initrd
 EOF
 chmod 755 "${basedir}"/kali-${architecture}/create-initrd
