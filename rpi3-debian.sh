@@ -53,6 +53,8 @@ cd "${basedir}"
 # create the rootfs - not much to modify here, except maybe throw in some more packages if you want.
 debootstrap --foreign --keyring=/usr/share/keyrings/debian-archive-keyring.gpg --include=debian-archive-keyring --arch ${architecture} ${suite} kali-${architecture} http://${mirror}/debian
 
+cp /usr/bin/qemu-arm-static kali-${architecture}/usr/bin/
+
 LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /debootstrap/debootstrap --second-stage
 
 mkdir -p kali-${architecture}/etc/apt/

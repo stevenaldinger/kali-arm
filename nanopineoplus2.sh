@@ -68,6 +68,8 @@ cd ${basedir}
 # create the rootfs - not much to modify here, except maybe the hostname.
 debootstrap --foreign  --keyring=/usr/share/keyrings/kali-archive-keyring.gpg --include=kali-archive-keyring --arch ${architecture} kali-rolling kali-${architecture} http://${mirror}/kali
 
+cp /usr/bin/qemu-aarch64-static kali-${architecture}/usr/bin/
+
 # The machine name is a randomly generated 16 character string.
 LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /debootstrap/debootstrap --second-stage
 mkdir -p kali-${architecture}/etc/apt/
