@@ -642,7 +642,7 @@ sync
 
 # rpi-wiggle
 mkdir -p "${basedir}"/kali-${architecture}/root/scripts
-wget https://raw.github.com/offensive-security/rpiwiggle/master/rpi-wiggle -O "${basedir}"/kali-${architecture}/root/scripts/rpi-wiggle.sh
+wget https://raw.github.com/steev/rpiwiggle/master/rpi-wiggle -O "${basedir}"/kali-${architecture}/root/scripts/rpi-wiggle.sh
 chmod 755 "${basedir}"/kali-${architecture}/root/scripts/rpi-wiggle.sh
 
 sed -i -e 's/^#PermitRootLogin.*/PermitRootLogin yes/' "${basedir}"/kali-${architecture}/etc/ssh/sshd_config
