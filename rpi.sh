@@ -261,9 +261,8 @@ apt-get clean
 rm -f /0
 rm -f /hs_err*
 rm -f cleanup
-rm -f /usr/bin/qemu*
-
 rm -f /third-stage
+rm -f /usr/bin/qemu*
 EOF
 
 export MALLOC_CHECK_=0 # workaround for LP: #520465
