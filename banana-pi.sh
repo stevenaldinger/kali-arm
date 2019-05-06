@@ -151,12 +151,6 @@ WantedBy=multi-user.target
 EOF
 chmod 644 kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 
-# Set up u-boot-menu to append the kernel cmdline stuff
-mkdir -p kali-${architecture}/etc/default/
-cat << 'EOF' > kali-${architecture}/etc/default/u-boot
-U_BOOT_PARAMETERS="console=ttyS0,115200 console=tty1 root=/dev/mmcblk0p1 rootwait panic=10 ${extra} rw rootfstype=ext4 net.ifnames=0"
-EOF
-
 cat << EOF > kali-${architecture}/third-stage
 #!/bin/bash
 set -e
@@ -197,6 +191,12 @@ systemctl enable ssh
 
 # Copy bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
+
+# We replace the u-boot menu defaults here so we can make sure the build system doesn't poison it.
+# We use _EOF_ so that the third-stage script doesn't end prematurely.
+cat << '_EOF_' > /etc/default/u-boot
+U_BOOT_PARAMETERS="console=ttyS0,115200 console=tty1 root=/dev/mmcblk0p1 rootwait panic=10 rw rootfstype=ext4 net.ifnames=0"
+_EOF_
 
 rm -f /usr/sbin/policy-rc.d
 rm -f /usr/sbin/invoke-rc.d
