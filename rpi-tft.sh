@@ -141,6 +141,8 @@ Description=shared-mime-info update hack
 Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
+Environment=DEBIAN_FRONTEND=noninteractive
+ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -233,6 +235,10 @@ apt-get install --yes --allow-change-held-packages kalipi-kernel kalipi-bootload
 
 echo "Making the image insecure"
 sed -i -e 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Regenerated the shared-mime-info database on the first boot
+# since it fails to do so properly in a chroot.
+systemctl enable smi-hack
 
 # Resize FS on first run (hopefully)
 systemctl enable rpiwiggle

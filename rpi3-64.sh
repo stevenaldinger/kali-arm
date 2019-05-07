@@ -111,6 +111,22 @@ WantedBy=multi-user.target
 EOF
 chmod 644 kali-${architecture}/usr/lib/systemd/system/regenerate_ssh_host_keys.service
 
+cat << EOF > kali-${architecture}/usr/lib/systemd/system/smi-hack.service
+[Unit]
+Description=shared-mime-info update hack
+Before=regenerate_ssh_host_keys.service
+[Service]
+Type=oneshot
+Environment=DEBIAN_FRONTEND=noninteractive
+ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
+ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
+ExecStartPost=/bin/systemctl disable smi-hack
+
+[Install]
+WantedBy=multi-user.target
+EOF
+chmod 644 kali-${architecture}/usr/lib/systemd/system/smi-hack.service
+
 cat << EOF > "${basedir}"/kali-${architecture}/usr/lib/systemd/system/rpiwiggle.service
 [Unit]
 Description=Resize filesystem
@@ -230,6 +246,10 @@ apt-get install --yes --allow-change-held-packages kalipi-kernel kalipi-bootload
 # image insecure and enable root login with a password.
 echo "Making the image insecure"
 sed -i -e 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Regenerated the shared-mime-info database on the first boot
+# since it fails to do so properly in a chroot.
+systemctl enable smi-hack
 
 systemctl enable rpiwiggle
 # Generate SSH host keys on first run
