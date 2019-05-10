@@ -133,7 +133,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -273,6 +273,9 @@ systemctl enable enable-ssh
 # Copy over the default bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
 
+cd /root
+apt download ca-certificates
+
 # Try and make the console a bit nicer
 # Set the terminus font for a bit nicer display.
 sed -i -e 's/FONTFACE=.*/FONTFACE="Terminus"/' /etc/default/console-setup
@@ -285,6 +288,7 @@ rm -f /usr/sbin/invoke-rc.d
 dpkg-divert --remove --rename /usr/sbin/invoke-rc.d
 rm -rf /root/.bash_history
 apt-get update
+apt-get clean
 rm -f /0
 rm -f /hs_err*
 rm -f cleanup
