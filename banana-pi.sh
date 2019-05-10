@@ -144,7 +144,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -193,6 +193,9 @@ systemctl enable ssh
 
 # Copy bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
+
+cd /root
+apt download ca-certificates
 
 # We replace the u-boot menu defaults here so we can make sure the build system doesn't poison it.
 # We use _EOF_ so that the third-stage script doesn't end prematurely.

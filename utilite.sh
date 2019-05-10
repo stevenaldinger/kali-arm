@@ -146,7 +146,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -213,6 +213,9 @@ systemctl enable ssh
 # Copy over the default bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
 
+cd /root
+apt download ca-certificates
+
 # Fix startup time from 5 minutes to 15 secs on raise interface wlan0
 sed -i 's/^TimeoutStartSec=5min/TimeoutStartSec=15/g' "/usr/lib/systemd/system/networking.service"
 
@@ -231,6 +234,7 @@ cat << EOF > kali-${architecture}/cleanup
 rm -rf /root/.bash_history
 apt-get update
 apt-get clean
+apt-get --download-only install ca-certificates
 rm -f /0
 rm -f /hs_err*
 rm -f cleanup

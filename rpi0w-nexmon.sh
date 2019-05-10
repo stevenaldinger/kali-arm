@@ -162,7 +162,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -309,6 +309,9 @@ echo "exit 0" >> /etc/rc.local
 
 # Copy bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
+
+cd /root
+apt download ca-certificates
 
 # libinput seems to fail hard on RaspberryPi devices, so we make sure it's not
 # installed here (and we have xserver-xorg-input-evdev and
