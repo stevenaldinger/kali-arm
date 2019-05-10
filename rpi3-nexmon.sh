@@ -133,7 +133,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "dpkg-reconfigure ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt-get --yes install --reinstall ca-certificates"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStartPost=/bin/systemctl disable smi-hack
 
@@ -286,6 +286,7 @@ dpkg-divert --remove --rename /usr/sbin/invoke-rc.d
 rm -rf /root/.bash_history
 apt-get update
 apt-get clean
+apt-get --yes --download-only install ca-certificates
 rm -f /0
 rm -f /hs_err*
 rm -f cleanup
