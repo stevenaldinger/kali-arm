@@ -133,9 +133,8 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt-get --yes install --reinstall ca-certificates"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall ca-certificates"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
-ExecStart=/bin/sh -c "apt-get clean"
 ExecStartPost=/bin/systemctl disable smi-hack
 
 [Install]
