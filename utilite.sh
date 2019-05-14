@@ -147,7 +147,10 @@ Before=regenerate_ssh_host_keys.service
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
 ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && apt --yes install --reinstall /root/ca-certificates_20190110_all.deb"
+ExecStart=/bin/sh -c "apt --yes install --reinstall /root/fontconfig_2.13.1-2_armhf.deb"
+ExecStart=/bin/sh -c "apt --yes install --reinstall /root/libgdk-pixbuf2.0-0_2.38.1+dfsg-1_armhf.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
+ExecStart=/bin/sh -c "rm -f /root/*.deb"
 ExecStartPost=/bin/systemctl disable smi-hack
 
 [Install]
@@ -215,6 +218,8 @@ cp  /etc/skel/.bashrc /root/.bashrc
 
 cd /root
 apt download ca-certificates
+apt download libgdk-pixbuf2.0-0
+apt download fontconfig
 
 # Fix startup time from 5 minutes to 15 secs on raise interface wlan0
 sed -i 's/^TimeoutStartSec=5min/TimeoutStartSec=15/g' "/usr/lib/systemd/system/networking.service"
