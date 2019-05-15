@@ -137,7 +137,7 @@ WantedBy=multi-user.target
 EOF
 chmod 644 kali-${architecture}/usr/lib/systemd/system/regenerate_ssh_host_keys.service
 
-cat cat << EOF > kali-${architecture}/usr/lib/systemd/system/smi-hack.service
+cat << EOF > kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 [Unit]
 Description=shared-mime-info update hack
 Before=regenerate_ssh_host_keys.service
