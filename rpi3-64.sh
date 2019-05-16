@@ -288,7 +288,6 @@ apt-get update
 apt-get clean
 rm -f /0
 rm -f /hs_err*
-rm -f /root/*.deb
 rm -f cleanup
 #rm -f /usr/bin/qemu*
 EOF
