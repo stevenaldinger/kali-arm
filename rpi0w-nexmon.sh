@@ -158,9 +158,8 @@ chmod 644 kali-${architecture}/usr/lib/systemd/system/regenerate_ssh_host_keys.s
 cat << EOF > kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 [Unit]
 Description=shared-mime-info update hack
-Before=rpiwiggle.service
+Before=regenerate_ssh_host_keys.service
 [Service]
-Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
 ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && dpkg -i /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
@@ -175,7 +174,7 @@ chmod 644 kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 cat << EOF > kali-${architecture}/usr/lib/systemd/system/rpiwiggle.service
 [Unit]
 Description=Resize filesystem
-Before=regenerate_ssh_host_keys.service
+After=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 ExecStart=/root/scripts/rpi-wiggle.sh

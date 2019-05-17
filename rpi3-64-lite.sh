@@ -131,7 +131,7 @@ chmod 644 kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 cat << EOF > "${basedir}"/kali-${architecture}/usr/lib/systemd/system/rpiwiggle.service
 [Unit]
 Description=Resize filesystem
-Before=regenerate_ssh_host_keys.service
+After=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 ExecStart=/root/scripts/rpi-wiggle.sh
