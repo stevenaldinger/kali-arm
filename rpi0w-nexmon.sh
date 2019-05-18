@@ -160,6 +160,7 @@ cat << EOF > kali-${architecture}/usr/lib/systemd/system/smi-hack.service
 Description=shared-mime-info update hack
 Before=regenerate_ssh_host_keys.service
 [Service]
+Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
 ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && dpkg -i /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
