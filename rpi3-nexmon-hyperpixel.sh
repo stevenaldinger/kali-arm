@@ -435,7 +435,7 @@ ls -lah /usr/lib/x86_64-linux-gnu/libl.a
 ls -lah /usr/lib/x86_64-linux-gnu/libfl.a
 make
 cd buildtools/isl-0.10
-CC=$CCgcc
+CC=${CC}gcc
 ./configure
 make
 sed -i -e 's/all:.*/all: $(RAM_FILE)/g' ${NEXMON_ROOT}/patches/bcm43430a1/7_45_41_46/nexmon/Makefile
