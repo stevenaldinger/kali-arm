@@ -164,6 +164,12 @@ ExecStartPost=/bin/systemctl disable pinebook-wifi-dkms.service
 EOF
 chmod 644 kali-${architecture}/usr/lib/systemd/system/pinebook-wifi-dkms.service
 
+# Disable RESUME (suspend/resume is currently broken anyway!) which speeds up boot massively.
+mkdir -p kali-${architecture}/etc/initramfs-tools/conf.d/
+cat << EOF > kali-${architecture}/etc/initramfs-tools/conf.d/resume
+RESUME=none
+EOF
+
 cat << EOF > kali-${architecture}/third-stage
 #!/bin/bash
 set -e
