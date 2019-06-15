@@ -305,8 +305,9 @@ systemctl enable enable-ssh
 dpkg --force-all -i /root/pi-bluetooth+re4son_2.2_all.deb
 
 # Turn off kernel dmesg showing up in console since rpi0 only uses console
-echo "dmesg -D" > /etc/rc.local
+echo "dmesg -D" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
+chmod +x /etc/rc.local
 
 # Copy bashrc
 cp  /etc/skel/.bashrc /root/.bashrc
