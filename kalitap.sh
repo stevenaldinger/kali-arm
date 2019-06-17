@@ -45,7 +45,7 @@ tools="passing-the-hash winexe aircrack-ng hydra john sqlmap wireshark libnfc-bi
 services="openssh-server apache2"
 extras="firefox-esr wpasupplicant"
 
-packages="${arm} ${base} ${services} ${extras}"
+packages="${arm} ${base} ${services}"
 architecture="armhf"
 # If you have your own preferred mirrors, set them here.
 # You may want to leave security.kali.org alone, but if you trust your local
@@ -171,8 +171,8 @@ export DEBIAN_FRONTEND=noninteractive
 # So to workaround it, we attempt to install them twice.
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages dist-upgrade
 apt-get --yes --allow-change-held-packages autoremove
 

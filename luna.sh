@@ -45,7 +45,7 @@ tools="passing-the-hash winexe aircrack-ng hydra john sqlmap wireshark libnfc-bi
 services="openssh-server apache2"
 extras="firefox-esr wpasupplicant"
 
-export packages="${arm} ${base} ${services} ${extras}"
+export packages="${arm} ${base} ${services}"
 export architecture="armhf"
 # If you have your own preferred mirrors, set them here.
 # After generating the rootfs, we set the sources.list to the default settings.
@@ -168,8 +168,8 @@ rm -f /etc/udev/rules.d/70-persistent-net.rules
 # So to workaround it, we attempt to install them twice.
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
 
 # Regenerated the shared-mime-info database on the first boot
 # since it fails to do so properly in a chroot.

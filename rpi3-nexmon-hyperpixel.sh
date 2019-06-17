@@ -42,7 +42,7 @@ tools="aircrack-ng crunch cewl dnsrecon dnsutils ethtool exploitdb hydra john li
 services="apache2 atftpd openssh-server openvpn tightvncserver"
 extras="bluez bluez-firmware firefox-esr i2c-tools python-configobj python-evdev python-pip python-requests python-rpi.gpio python-smbus raspi3-firmware triggerhappy wpasupplicant xfce4-terminal xfonts-terminus"
 
-packages="${arm} ${base} ${services} ${extras}"
+packages="${arm} ${base} ${services}"
 
 architecture="armhf"
 # If you have your own preferred mirrors, set them here.
@@ -249,8 +249,8 @@ echo "root:toor" | chpasswd
 export DEBIAN_FRONTEND=noninteractive
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
 
 # Install the kernel packages
 dpkg -i /root/raspberrypi-kernel_${rpikernelver}_armhf.deb /root/raspberrypi-kernel-headers_${rpikernelver}_armhf.deb

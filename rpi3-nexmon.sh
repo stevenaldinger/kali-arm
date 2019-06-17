@@ -36,7 +36,7 @@ tools="aircrack-ng crunch cewl dnsrecon dnsutils ethtool exploitdb hydra john li
 services="apache2 atftpd openssh-server openvpn tightvncserver"
 extras="bluez bluez-firmware firefox-esr i2c-tools python-configobj python-pip python-requests python-rpi.gpio python-smbus triggerhappy wpasupplicant xfce4-terminal xfonts-terminus"
 
-packages="${arm} ${base} ${services} ${extras}"
+packages="${arm} ${base} ${services}"
 
 architecture="armhf"
 # If you have your own preferred mirrors, set them here.
@@ -232,8 +232,8 @@ export DEBIAN_FRONTEND=noninteractive
 # So to workaround it, we attempt to install them twice.
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
 
 # Install the kernel packages
 echo "deb http://http.re4son-kernel.com/re4son kali-pi main" > /etc/apt/sources.list.d/re4son.list

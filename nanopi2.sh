@@ -59,7 +59,7 @@ tools="aircrack-ng crunch cewl dnsrecon dnsutils ethtool exploitdb hydra john li
 services="apache2 atftpd openssh-server openvpn tightvncserver"
 extras="firefox-esr xfce4-terminal wpasupplicant python-smbus i2c-tools bluez bluez-firmware xfonts-terminus"
 
-packages="${arm} ${base} ${services} ${extras}"
+packages="${arm} ${base} ${services}"
 architecture="armhf"
 # If you have your own preferred mirrors, set them here.
 # After generating the rootfs, we set the sources.list to the default settings.
@@ -196,8 +196,8 @@ export DEBIAN_FRONTEND=noninteractive
 # So to workaround it, we attempt to install them twice.
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages install ${packages} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
-apt-get --yes --allow-change-held-packages install ${desktop} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
+apt-get --yes --allow-change-held-packages install ${desktop} ${extras} ${tools} || apt-get --yes --fix-broken install
 apt-get --yes --allow-change-held-packages dist-upgrade
 apt-get --yes --allow-change-held-packages autoremove
 
