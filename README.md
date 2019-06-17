@@ -8,7 +8,7 @@ as can be found at http://www.kali.org/downloads/
 that all the dependencies have been installed.
 - Make sure you run the build-deps.sh script first, which installs all required dependencies.
 
-** IF YOU ARE BUILDING IN A VM, YOU WILL NEED TO DEDICATE AT LEAST 8GB OF RAM, OR USE A SWAP FILE **
+**_IF YOU ARE BUILDING IN A VM, YOU WILL NEED TO DEDICATE AT LEAST 8GB OF RAM, OR USE A SWAP FILE_**
 
 A sample workflow would look similar to (armhf):
 
