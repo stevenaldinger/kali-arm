@@ -28,4 +28,4 @@ On 64bit systems, after the script finishes running, you will have an image
 files located in ~/arm-stuff/kali-arm/ called
 kali-linux-2019.2-exynos.img.xz
 
-Last Updated : 13th June, 2019 08:05:45 UTC
+Last Updated : 17th June, 2019 07:40:45 UTC
