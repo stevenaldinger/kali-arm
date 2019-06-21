@@ -220,6 +220,8 @@ dpkg-divert --add --local --divert /usr/sbin/invoke-rc.d.chroot --rename /usr/sb
 cp /bin/true /usr/sbin/invoke-rc.d
 echo -e "#!/bin/sh\nexit 101" > /usr/sbin/policy-rc.d
 chmod 755 /usr/sbin/policy-rc.d
+mkdir -p /etc/apt/apt.conf.d/
+echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
 apt-get update
 apt-get --yes --allow-change-held-packages install locales-all
 debconf-set-selections /debconf.set
