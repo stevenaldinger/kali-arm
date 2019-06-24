@@ -221,8 +221,7 @@ cp /bin/true /usr/sbin/invoke-rc.d
 echo -e "#!/bin/sh\nexit 101" > /usr/sbin/policy-rc.d
 chmod 755 /usr/sbin/policy-rc.d
 mkdir -p /etc/apt/apt.conf.d/
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
-# According to the last comment in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=119544 there is no APT....
+# According to the last comment in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=119544 it's just Acquire::Retries to retry
 echo "Acquire::Retries \"10\";" >> /etc/apt/apt.conf.d/80-retries
 apt-get update
 apt-get --yes --allow-change-held-packages install locales-all
