@@ -479,8 +479,8 @@ echo "the above is how big the sdcard needs to be"
 echo "Creating image file ${imagename}.img"
 dd if=/dev/zero of="${basedir}"/${imagename}.img bs=1M count=${size}
 parted ${imagename}.img --script -- mklabel msdos
-parted ${imagename}.img --script -- mkpart primary fat32 0 64
-parted ${imagename}.img --script -- mkpart primary ext4 64 -1
+parted ${imagename}.img --script -- mkpart primary fat32 0 128
+parted ${imagename}.img --script -- mkpart primary ext4 128 -1
 
 # Set the partition variables
 loopdevice=`losetup -f --show "${basedir}"/${imagename}.img`
