@@ -120,6 +120,7 @@ Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
 ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && dpkg -i /root/ca-certificates_20190110_all.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
+ExecStart=/bin/sh -c "dpkg-reconfigure xfonts-base"
 ExecStart=/bin/sh -c "rm -f /root/*.deb"
 ExecStartPost=/bin/systemctl disable smi-hack
 
