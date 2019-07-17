@@ -16,13 +16,13 @@ while fuser /var/lib/dpkg/lock >/dev/null ; do
     sleep 5
 done
 
-apt-get install -y git-core gnupg flex bison gperf build-essential \
-zip curl libncurses5-dev zlib1g-dev libncurses5-dev kali-archive-keyring \
+apt-get install -y gnupg flex bison gperf build-essential \
+zip curl libncurses5-dev zlib1g-dev kali-archive-keyring \
 parted kpartx debootstrap pixz qemu-user-static abootimg cgpt vboot-kernel-utils \
 vboot-utils u-boot-tools bc lzma lzop automake autoconf m4 dosfstools rsync \
-schedtool git dosfstools e2fsprogs device-tree-compiler libssl-dev qemu-user-static \
+schedtool git dosfstools e2fsprogs device-tree-compiler libssl-dev \
 crossbuild-essential-armhf crossbuild-essential-armel crossbuild-essential-arm64 \
-systemd-container libgmp3-dev gawk qpdf bison flex make git libfl-dev swig \
+systemd-container libgmp3-dev gawk qpdf make libfl-dev swig \
 python-dev
 
 
