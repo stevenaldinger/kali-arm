@@ -422,6 +422,9 @@ kernel=kernel8l-alt.img
 arm_64bit=1
 EOF
 
+# Copy in the bluetooth firmware
+cp "${basedir}"/../misc/brcm/BCM43430A1.hcd "${basedir}"/kali-${architecture}/lib/firmware/brcm/BCM43430A1.hcd
+
 cp "${basedir}"/../misc/zram "${basedir}"/kali-${architecture}/etc/init.d/zram
 chmod 755 "${basedir}"/kali-${architecture}/etc/init.d/zram
 

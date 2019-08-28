@@ -369,6 +369,9 @@ cat << EOF >> "${basedir}"/kali-${architecture}/boot/config.txt
 #program_usb_boot_mode=1
 EOF
 
+# Copy in the bluetooth firmware
+cp "${basedir}"/../misc/brcm/BCM43430A1.hcd "${basedir}"/kali-${architecture}/lib/firmware/brcm/BCM43430A1.hcd
+
 cp "${basedir}"/../misc/zram "${basedir}"/kali-${architecture}/etc/init.d/zram
 chmod 755 "${basedir}"/kali-${architecture}/etc/init.d/zram
 

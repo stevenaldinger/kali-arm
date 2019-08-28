@@ -363,6 +363,9 @@ EOF
 # we have to mv it to /boot so the thing will boot.
 mv "${basedir}"/kali-${architecture}/boot/firmware/* "${basedir}"/kali-${architecture}/boot/
 
+# Copy in the bluetooth firmware
+cp "${basedir}"/../misc/brcm/BCM43430A1.hcd "${basedir}"/kali-${architecture}/lib/firmware/brcm/BCM43430A1.hcd
+
 cp "${basedir}"/../misc/zram "${basedir}"/kali-${architecture}/etc/init.d/zram
 chmod 755 "${basedir}"/kali-${architecture}/etc/init.d/zram
 
@@ -374,10 +377,6 @@ wget https://raw.githubusercontent.com/Re4son/RPi-Tweaks/master/kalipi-tft-confi
 chmod 755 "${basedir}"/kali-${architecture}/usr/bin/kalipi-tft-config
 
 rm -rf "${basedir}"/root/root/{fakeuname.c,buildnexmon.sh,libfakeuname.so,raspberrypi-kernel*.deb}
-
-echo "Running du to see how big kali-${architecture} is"
-du -sh "${basedir}"/kali-${architecture}
-echo "the above is how big the sdcard needs to be"
 
 # Create the disk and partition it
 echo "Creating image file ${imagename}.img"
