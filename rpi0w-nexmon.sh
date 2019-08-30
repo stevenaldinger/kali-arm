@@ -306,6 +306,16 @@ systemctl enable enable-ssh
 dpkg --force-all -i /root/pi-bluetooth+re4son_2.2_all.deb
 
 # Turn off kernel dmesg showing up in console since rpi0 only uses console
+echo "#!/bin/sh -e" > /etc/rc.local
+echo "#" >> /etc/rc.local
+echo "# rc.local" >> /etc/rc.local
+echo "#" >> /etc/rc.local
+echo "# This script is executed at the end of each multiuser runlevel." >> /etc/rc.local
+echo "# Make sure that the script will "exit 0" on success or any other" >> /etc/rc.local
+echo "# value on error." >> /etc/rc.local
+echo "#" >> /etc/rc.local
+echo "# In order to enable or disable this script just change the execution" >> /etc/rc.local
+echo "# bits." >> /etc/rc.local
 echo "dmesg -D" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 chmod +x /etc/rc.local
