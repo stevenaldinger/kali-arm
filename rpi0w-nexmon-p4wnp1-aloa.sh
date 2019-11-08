@@ -57,7 +57,7 @@ services="apache2 atftpd openssh-server openvpn"
 # iodine: allow DNS tunneling
 # dosfstools: contains fatlabel (used to label FAT32 iamges for UMS)
 # Note on Go: The golang package is version 1.10, so we are missing support for current gopherjs (webclient couldn't be build on Pi) and go modules (replacement for dep)
-extras="autossh avahi-daemon bash-completion bluez bluez-firmware dhcpcd5 dnsmasq dosfstools genisoimage golang haveged hostapd i2c-tools iodine policykit-1 python-configobj python-dev python-pip python-requests python-smbus wpasupplicant"
+extras="autossh avahi-daemon bash-completion bluez bluez-firmware dhcpcd5 dnsmasq dosfstools genisoimage golang haveged hostapd i2c-tools iodine policykit-1 python3-configobj python3-dev python3-pip python3-requests python3-smbus wpasupplicant"
 
 packages="${arm} ${base} ${services} ${extras}"
 architecture="armel"
