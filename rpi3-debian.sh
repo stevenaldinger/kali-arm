@@ -31,7 +31,7 @@ machine=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 
 arm="abootimg cgpt fake-hwclock ntpdate u-boot-tools vboot-utils vboot-kernel-utils"
 base="apt-transport-https apt-utils console-setup e2fsprogs firmware-linux firmware-realtek firmware-atheros firmware-libertas ifupdown initramfs-tools iw man-db mlocate netcat-traditional net-tools parted psmisc rfkill screen snmpd snmp sudo tftp tmux unrar usbutils vim wget zerofree"
-desktop="fonts-croscore fonts-crosextra-caladea fonts-crosextra-carlito gtk3-engines-xfce network-manager network-manager-gnome lightdm xfce4 xfce4-goodies xfce4-power-manager-plugins xfce4-terminal xserver-xorg-video-fbdev xserver-xorg-input-evdev xserver-xorg-input-synaptics"
+desktop="fonts-croscore fonts-crosextra-caladea fonts-crosextra-carlito network-manager network-manager-gnome lightdm xfce4 xfce4-goodies xfce4-power-manager-plugins xfce4-terminal xserver-xorg-video-fbdev xserver-xorg-input-evdev xserver-xorg-input-synaptics"
 tools="aircrack-ng crunch cewl dnsrecon dnsutils ethtool hydra john libnfc-bin medusa mfoc ncrack nmap proxychains recon-ng sqlmap tcpdump tor tshark usbutils whois wireshark"
 services="apache2 atftpd openssh-server openvpn tightvncserver"
 extras="bluez bluez-firmware firefox-esr i2c-tools python3-configobj python3-pip python3-requests python3-rpi.gpio python3-smbus triggerhappy wpasupplicant xfce4-terminal xfonts-terminus"
