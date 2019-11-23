@@ -503,7 +503,7 @@ KERNEL=="mmcblk0*", ENV{UDISKS_IGNORE}="1"
 EOF
 
 # Disable uap0 and p2p0 interfaces in NetworkManager
-mkdir -p "${basedir}/kali-${architecture}/etc/NetworkManager/
+mkdir -p "${basedir}"/kali-${architecture}/etc/NetworkManager/
 printf '\n[keyfile]\nunmanaged-devices=interface-name:p2p0\n' >> "${basedir}"/kali-${architecture}/etc/NetworkManager/NetworkManager.conf
 
 # Touchpad configuration
