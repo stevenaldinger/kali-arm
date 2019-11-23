@@ -414,6 +414,7 @@ KERNEL=="mmcblk0*", ENV{UDISKS_IGNORE}="1"
 EOF
 
 # Disable uap0 and p2p0 interfaces in NetworkManager
+mkdir -p "${basedir}"/kali-${architecture}/etc/NetworkManager/
 echo -e '\n[keyfile]\nunmanaged-devices=interface-name:p2p0\n' >> "${basedir}"/kali-${architecture}/etc/NetworkManager/NetworkManager.conf
 
 # Create these if they don't exist, to make sure we have proper audio with pulse
