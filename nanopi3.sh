@@ -151,7 +151,7 @@ Before=regenerate_ssh_host_keys.service
 [Service]
 Type=oneshot
 Environment=DEBIAN_FRONTEND=noninteractive
-ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && dpkg -i /root/ca-certificates_20190110_all.deb /root/fontconfig_2.13.1-2_arm64.deb /root/libgdk-pixbuf2.0-0_2.38.1+dfsg-1_arm64.deb"
+ExecStart=/bin/sh -c "rm -rf /etc/ssl/certs/*.pem && dpkg -i /root/*.deb"
 ExecStart=/bin/sh -c "dpkg-reconfigure shared-mime-info"
 ExecStart=/bin/sh -c "dpkg-reconfigure xfonts-base"
 ExecStart=/bin/sh -c "rm -f /root/*.deb"
