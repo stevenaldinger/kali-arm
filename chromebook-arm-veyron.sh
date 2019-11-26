@@ -196,6 +196,7 @@ cd /root
 apt download ca-certificates
 apt download libgdk-pixbuf2.0-0
 apt download fontconfig
+apt download kali-menu
 
 # Try and make the console a bit nicer
 # Set the terminus font for a bit nicer display.
