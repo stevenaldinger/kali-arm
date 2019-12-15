@@ -14,7 +14,7 @@ apt-get -y install \
     git \
     libncurses5:i386 \
     lzma \
-    lzop
+    lzop \
     pixz \
     qemu-user-static \
     systemd-container \
