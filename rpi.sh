@@ -294,8 +294,12 @@ cat << EOF > kali-${architecture}/fourth-stage
 #!/bin/bash
 
 # install golang 1.13
-curl -Lo /tmp/go1.13.5.linux-armv6l.tar.gz https://dl.google.com/go/go1.13.5.linux-armv6l.tar.gz
-tar -C /usr/local -xzf /tmp/go1.13.5.linux-armv6l.tar.gz
+curl --insecure -Lo /tmp/go1.13.5.linux-armv6l.tar.gz https://dl.google.com/go/go1.13.5.linux-armv6l.tar.gz || echo "Go download failed."
+
+if [ -f /tmp/go1.13.5.linux-armv6l.tar.gz ]
+then
+  tar -C /usr/local -xzf /tmp/go1.13.5.linux-armv6l.tar.gz
+fi
 EOF
 
 
