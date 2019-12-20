@@ -294,7 +294,9 @@ cat << EOF > kali-${architecture}/fourth-stage
 #!/bin/bash
 git clone https://github.com/stevenaldinger/decker.git /usr/local/decker
 cd /usr/local/decker
-make build_all || echo "decker build failed"
+git checkout refactor
+make build_all_arm || echo "decker build failed"
+echo "export PATH=/usr/local/decker:\$PATH" >> /root/.bashrc
 EOF
 
 chmod 755 kali-${architecture}/fourth-stage
