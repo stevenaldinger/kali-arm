@@ -42,7 +42,7 @@ machine=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 # image, keep that in mind.
 
 arm="abootimg cgpt fake-hwclock ntpdate u-boot-tools vboot-utils vboot-kernel-utils"
-base="apt-transport-https apt-utils console-setup e2fsprogs firmware-linux firmware-realtek firmware-atheros firmware-libertas firmware-brcm80211 ifupdown initramfs-tools iw kali-defaults man-db mlocate netcat-traditional net-tools parted psmisc rfkill screen snmpd snmp sudo tftp tmux unrar usbutils vim wget zerofree"
+base="apt-transport-https apt-utils build-essential console-setup e2fsprogs firmware-linux firmware-realtek firmware-atheros firmware-libertas firmware-brcm80211 ifupdown initramfs-tools iw kali-defaults man-db mlocate netcat-traditional net-tools parted psmisc rfkill screen snmpd snmp sudo tftp tmux unrar usbutils vim wget zerofree"
 desktop="kali-menu fonts-croscore fonts-crosextra-caladea fonts-crosextra-carlito kali-desktop-xfce kali-root-login lightdm network-manager network-manager-gnome xfce4 xserver-xorg-video-fbdev xserver-xorg-input-evdev xserver-xorg-input-synaptics"
 tools="kali-linux-top10 golang aircrack-ng crunch cewl dnsrecon dnsutils ethtool exploitdb hydra john libnfc-bin medusa metasploit-framework mfoc ncrack nmap passing-the-hash proxychains recon-ng sqlmap tcpdump theharvester tor tshark usbutils whois windows-binaries winexe wpscan wireshark"
 services="apache2 atftpd openssh-server openvpn tightvncserver"
@@ -287,6 +287,21 @@ chmod 755 kali-${architecture}/third-stage
 LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /third-stage
 if [[ $? > 0 ]]; then
   echo "Third stage failed"
+  exit 1
+fi
+
+cat << EOF > kali-${architecture}/fourth-stage
+#!/bin/bash
+git clone https://github.com/stevenaldinger/decker.git /usr/local/decker
+cd /usr/local/decker
+make build_all || echo "decker build failed"
+EOF
+
+chmod 755 kali-${architecture}/fourth-stage
+
+LANG=C systemd-nspawn -M ${machine} -D kali-${architecture} /fourth-stage
+if [[ $? > 0 ]]; then
+  echo "Fourth stage failed"
   exit 1
 fi
 
